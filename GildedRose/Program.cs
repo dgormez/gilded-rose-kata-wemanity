@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace csharp
+namespace GildedRose
 {
     public class Program
     {
