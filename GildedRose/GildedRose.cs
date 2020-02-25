@@ -22,10 +22,8 @@ namespace GildedRose
 
                 if (item.Name == BackStagePass)
                 {
-                    if (IsQualityBelowMaximumAllowedValue(item))
-                    {
-                        IncreaseQuality(item);
-                    }
+                    //BackStage passes Increase in quality when approching sell day
+                    IncreaseQualityIfBelowMaximum(item);
 
                     if (IsQualityBelowMaximumAllowedValue(item))
                     {
@@ -52,38 +50,48 @@ namespace GildedRose
                 {
                     DecreaseRemainingSellDays(item);
 
-                    if (IsQualityBelowMaximumAllowedValue(item))
-                    {
-                        IncreaseQuality(item);
-                    }
+                    //Aged Brie increase in quality instead of decreasing
+                    IncreaseQualityIfBelowMaximum(item);
 
+                    //Double quality increase rate for AgedBrie when expired
                     if (IsItemExpired(item))
                     {
-                        if (IsQualityBelowMaximumAllowedValue(item))
-                        {
-                            IncreaseQuality(item);
-                        }
+                        IncreaseQualityIfBelowMaximum(item);
                     }
+
                 }
 
                 //Default Case
                 if (item.Name != AgedBrie && item.Name != BackStagePass && item.Name != Sulfuras)
                 {
+                    
                     DecreaseRemainingSellDays(item);
 
+                    //Decrease quality of item
+                    DecreaseQualityIfAboveMinimum(item);
+
+                    //Doubble decrease Rate when expired
                     if (IsItemExpired(item))
                     {
-                        if (IsQualityAboveMinimumValue(item))
-                        {
-                            DecreaseQuality(item);
-                        }
-                    }
-
-                    if (IsQualityAboveMinimumValue(item))
-                    {
-                        DecreaseQuality(item);
+                        DecreaseQualityIfAboveMinimum(item);
                     }
                 }
+            }
+        }
+
+        private static void DecreaseQualityIfAboveMinimum(Item item)
+        {
+            if (IsQualityAboveMinimumValue(item))
+            {
+                DecreaseQuality(item);
+            }
+        }
+
+        private static void IncreaseQualityIfBelowMaximum(Item item)
+        {
+            if (IsQualityBelowMaximumAllowedValue(item))
+            {
+                IncreaseQuality(item);
             }
         }
 
