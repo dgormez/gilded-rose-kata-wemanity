@@ -19,15 +19,9 @@ namespace GildedRose
         {
             foreach (var item in Items)
             {
+                //Quality Handeling
 
-                //Default case
-                if (item.Name != AgedBrie && item.Name != BackStagePass && item.Name != Sulfuras)
-                {
-                    if (IsQualityAboveMinimumValue(item))
-                    {
-                        DecreaseQuality(item);
-                    }
-                }
+                
                 
                 if(item.Name == AgedBrie || item.Name == BackStagePass)
                 {
@@ -35,54 +29,61 @@ namespace GildedRose
                     {
                         IncreaseQuality(item);
                     }
+                }
 
-                    if (item.Name == BackStagePass)
+                if (item.Name == BackStagePass)
+                {
+                    if (IsQualityBelowMaximumAllowedValue(item))
                     {
                         if (item.SellIn < 11)
                         {
-                            if (IsQualityBelowMaximumAllowedValue(item))
-                            {
-                                IncreaseQuality(item);
-                            }
+
+                            IncreaseQuality(item);
                         }
 
                         if (item.SellIn < 6)
                         {
-                            if (IsQualityBelowMaximumAllowedValue(item))
-                            {
-                                IncreaseQuality(item);
-                            }
+                            IncreaseQuality(item);
                         }
                     }
                 }
 
+                //SellIn Handeling
                 if (item.Name != Sulfuras)
                 {
                     DecreaseRemainingSellDays(item);
                 }
 
-                if (IsItemExpired(item))
+                //Default Case
+                if (item.Name != AgedBrie && item.Name != BackStagePass && item.Name != Sulfuras)
                 {
-                    if (item.Name != AgedBrie)
+                    if (IsItemExpired(item))
                     {
-                        if (item.Name != BackStagePass)
+                        if (IsQualityAboveMinimumValue(item))
                         {
-                                if (item.Name != Sulfuras)
-                                {
-                                    if (IsQualityAboveMinimumValue(item))
-                                    {
-                                        DecreaseQuality(item);
-                                    }
-                                }
-                        }
-
-                        if (item.Name == BackStagePass)
-                        {
-                            item.Quality = 0;
+                            DecreaseQuality(item);
                         }
                     }
 
-                    if (item.Name == AgedBrie)
+                    if (IsQualityAboveMinimumValue(item))
+                    {
+                        DecreaseQuality(item);
+                    }
+                }
+
+
+
+                if (item.Name == BackStagePass)
+                {
+                    if (IsItemExpired(item))
+                    {
+                        SetQualityTo0(item);
+                    }
+                }
+
+                if (item.Name == AgedBrie)
+                {
+                    if (IsItemExpired(item))
                     {
                         if (IsQualityBelowMaximumAllowedValue(item))
                         {
@@ -93,9 +94,14 @@ namespace GildedRose
             }
         }
 
+        private static void SetQualityTo0(Item item)
+        {
+            item.Quality = 0;
+        }
+
         private static void DecreaseRemainingSellDays(Item item)
         {
-            item.SellIn = item.SellIn - 1;
+            item.SellIn -=  1;
         }
 
         private static bool IsQualityAboveMinimumValue(Item item)
@@ -105,7 +111,7 @@ namespace GildedRose
 
         private static void DecreaseQuality(Item item)
         {
-            item.Quality = item.Quality - 1;
+            item.Quality -= 1;
         }
 
         private static void IncreaseQuality(Item item)
