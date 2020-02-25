@@ -19,25 +19,18 @@ namespace GildedRose
         {
             foreach (var item in Items)
             {
-                //Quality Handeling
-
-                
-                
-                if(item.Name == AgedBrie || item.Name == BackStagePass)
-                {
-                    if (IsQualityBelowMaximumAllowedValue(item))
-                    {
-                        IncreaseQuality(item);
-                    }
-                }
 
                 if (item.Name == BackStagePass)
                 {
                     if (IsQualityBelowMaximumAllowedValue(item))
                     {
+                        IncreaseQuality(item);
+                    }
+
+                    if (IsQualityBelowMaximumAllowedValue(item))
+                    {
                         if (item.SellIn < 11)
                         {
-
                             IncreaseQuality(item);
                         }
 
@@ -46,17 +39,38 @@ namespace GildedRose
                             IncreaseQuality(item);
                         }
                     }
+
+                    DecreaseRemainingSellDays(item);
+
+                    if (IsItemExpired(item))
+                    {
+                        SetQualityTo0(item);
+                    }
                 }
 
-                //SellIn Handeling
-                if (item.Name != Sulfuras)
+                if (item.Name == AgedBrie)
                 {
                     DecreaseRemainingSellDays(item);
+
+                    if (IsQualityBelowMaximumAllowedValue(item))
+                    {
+                        IncreaseQuality(item);
+                    }
+
+                    if (IsItemExpired(item))
+                    {
+                        if (IsQualityBelowMaximumAllowedValue(item))
+                        {
+                            IncreaseQuality(item);
+                        }
+                    }
                 }
 
                 //Default Case
                 if (item.Name != AgedBrie && item.Name != BackStagePass && item.Name != Sulfuras)
                 {
+                    DecreaseRemainingSellDays(item);
+
                     if (IsItemExpired(item))
                     {
                         if (IsQualityAboveMinimumValue(item))
@@ -68,27 +82,6 @@ namespace GildedRose
                     if (IsQualityAboveMinimumValue(item))
                     {
                         DecreaseQuality(item);
-                    }
-                }
-
-
-
-                if (item.Name == BackStagePass)
-                {
-                    if (IsItemExpired(item))
-                    {
-                        SetQualityTo0(item);
-                    }
-                }
-
-                if (item.Name == AgedBrie)
-                {
-                    if (IsItemExpired(item))
-                    {
-                        if (IsQualityBelowMaximumAllowedValue(item))
-                        {
-                            IncreaseQuality(item);
-                        }
                     }
                 }
             }
