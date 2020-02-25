@@ -67,20 +67,22 @@ namespace GildedRose
                     {
                         if (item.Name != BackStagePass)
                         {
-                            if (IsQualityAboveMinimumValue(item))
-                            {
                                 if (item.Name != Sulfuras)
                                 {
-                                    DecreaseQuality(item);
+                                    if (IsQualityAboveMinimumValue(item))
+                                    {
+                                        DecreaseQuality(item);
+                                    }
                                 }
-                            }
                         }
-                        else
+
+                        if (item.Name == BackStagePass)
                         {
                             item.Quality = 0;
                         }
                     }
-                    else
+
+                    if (item.Name == AgedBrie)
                     {
                         if (IsQualityBelowMaximumAllowedValue(item))
                         {
