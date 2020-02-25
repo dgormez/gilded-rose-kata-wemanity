@@ -5,6 +5,11 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GildedRose", "GildedRose.csproj", "{176C0214-9136-4079-8DAB-11D7420C3881}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requierements", "Requierements", "{06B93DB9-5700-4233-B8B8-D8688200B7AD}"
+	ProjectSection(SolutionItems) = preProject
+		..\Requierements = ..\Requierements
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

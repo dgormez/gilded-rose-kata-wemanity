@@ -4,6 +4,11 @@ namespace GildedRose
 {
     public class GildedRose
     {
+        private const string AgedBrie = "Aged Brie";
+        private const string BackStagePass = "Backstage passes to a TAFKAL80ETC concert";
+        private const string Sulfuras = "Sulfuras, Hand of Ragnaros";
+
+
         IList<Item> Items;
         public GildedRose(IList<Item> Items)
         {
@@ -14,76 +19,106 @@ namespace GildedRose
         {
             foreach (var item in Items)
             {
-                if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                if (item.Name != AgedBrie && item.Name != BackStagePass)
                 {
-                    if (item.Quality > 0)
+                    if (IsQualityAboveMinimumValue(item))
                     {
-                        if (item.Name != "Sulfuras, Hand of Ragnaros")
+                        if (item.Name != Sulfuras)
                         {
-                            item.Quality = item.Quality - 1;
+                            DecreaseQuality(item);
                         }
                     }
                 }
                 else
                 {
-                    if (item.Quality < 50)
+                    if (IsQualityBelowMaximumAllowedValue(item))
                     {
-                        item.Quality = item.Quality + 1;
+                        IncreaseQuality(item);
 
-                        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                        if (item.Name == BackStagePass)
                         {
                             if (item.SellIn < 11)
                             {
-                                if (item.Quality < 50)
+                                if (IsQualityBelowMaximumAllowedValue(item))
                                 {
-                                    item.Quality = item.Quality + 1;
+                                    IncreaseQuality(item);
                                 }
                             }
 
                             if (item.SellIn < 6)
                             {
-                                if (item.Quality < 50)
+                                if (IsQualityBelowMaximumAllowedValue(item))
                                 {
-                                    item.Quality = item.Quality + 1;
+                                    IncreaseQuality(item);
                                 }
                             }
                         }
                     }
                 }
 
-                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                if (item.Name != Sulfuras)
                 {
-                    item.SellIn = item.SellIn - 1;
+                    DecreaseRemainingSellDays(item);
                 }
 
-                if (item.SellIn < 0)
+                if (IsItemExpired(item))
                 {
-                    if (item.Name != "Aged Brie")
+                    if (item.Name != AgedBrie)
                     {
-                        if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                        if (item.Name != BackStagePass)
                         {
-                            if (item.Quality > 0)
+                            if (IsQualityAboveMinimumValue(item))
                             {
-                                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                                if (item.Name != Sulfuras)
                                 {
-                                    item.Quality = item.Quality - 1;
+                                    DecreaseQuality(item);
                                 }
                             }
                         }
                         else
                         {
-                            item.Quality = item.Quality - item.Quality;
+                            item.Quality = 0;
                         }
                     }
                     else
                     {
-                        if (item.Quality < 50)
+                        if (IsQualityBelowMaximumAllowedValue(item))
                         {
-                            item.Quality = item.Quality + 1;
+                            IncreaseQuality(item);
                         }
                     }
                 }
             }
+        }
+
+        private static void DecreaseRemainingSellDays(Item item)
+        {
+            item.SellIn = item.SellIn - 1;
+        }
+
+        private static bool IsQualityAboveMinimumValue(Item item)
+        {
+            return item.Quality > 0;
+        }
+
+        private static void DecreaseQuality(Item item)
+        {
+            item.Quality = item.Quality - 1;
+        }
+
+        private static void IncreaseQuality(Item item)
+        {
+            item.Quality += 1;
+        }
+
+        private static bool IsQualityBelowMaximumAllowedValue(Item item)
+        {
+            return item.Quality < 50;
+        }
+
+        private static bool IsItemExpired(Item item)
+        {
+            return item.SellIn < 0;
         }
     }
 }
