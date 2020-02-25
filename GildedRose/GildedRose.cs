@@ -19,38 +19,38 @@ namespace GildedRose
         {
             foreach (var item in Items)
             {
-                if (item.Name != AgedBrie && item.Name != BackStagePass)
+
+                //Default case
+                if (item.Name != AgedBrie && item.Name != BackStagePass && item.Name != Sulfuras)
                 {
                     if (IsQualityAboveMinimumValue(item))
                     {
-                        if (item.Name != Sulfuras)
-                        {
-                            DecreaseQuality(item);
-                        }
+                        DecreaseQuality(item);
                     }
                 }
-                else
+                
+                if(item.Name == AgedBrie || item.Name == BackStagePass)
                 {
                     if (IsQualityBelowMaximumAllowedValue(item))
                     {
                         IncreaseQuality(item);
+                    }
 
-                        if (item.Name == BackStagePass)
+                    if (item.Name == BackStagePass)
+                    {
+                        if (item.SellIn < 11)
                         {
-                            if (item.SellIn < 11)
+                            if (IsQualityBelowMaximumAllowedValue(item))
                             {
-                                if (IsQualityBelowMaximumAllowedValue(item))
-                                {
-                                    IncreaseQuality(item);
-                                }
+                                IncreaseQuality(item);
                             }
+                        }
 
-                            if (item.SellIn < 6)
+                        if (item.SellIn < 6)
+                        {
+                            if (IsQualityBelowMaximumAllowedValue(item))
                             {
-                                if (IsQualityBelowMaximumAllowedValue(item))
-                                {
-                                    IncreaseQuality(item);
-                                }
+                                IncreaseQuality(item);
                             }
                         }
                     }
