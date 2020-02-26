@@ -10,7 +10,7 @@ namespace GildedRose.ItemsFactory
 
     public static class ItemWrapperFactory
     {
-        public static ItemWrapper GetCorrectItemTypeByName(string name, int sellIn, int quality)
+        public static ItemWrapper GetCorrectItemTypeByName(string name, int sellIn, int quality )
         {
             switch (name)
             {
