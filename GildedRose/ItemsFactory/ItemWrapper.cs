@@ -16,7 +16,14 @@ namespace GildedRose
 
         private const string Sulfuras = "Sulfuras, Hand of Ragnaros";
 
-        public void Age()
+        public ItemWrapper (string name, int sellIn, int quality)
+        {
+            Name = name;
+            SellIn = sellIn;
+            Quality = quality;
+        }
+
+        public virtual void Age()
         {
             if (Name == BackStagePass)
             {
@@ -74,7 +81,7 @@ namespace GildedRose
             }
         }
 
-        private void DecreaseQualityIfAboveMinimum()
+        protected void DecreaseQualityIfAboveMinimum()
         {
             if (IsQualityAboveMinimumValue())
             {
@@ -82,7 +89,7 @@ namespace GildedRose
             }
         }
 
-        private void IncreaseQualityIfBelowMaximum()
+        protected void IncreaseQualityIfBelowMaximum()
         {
             if (IsQualityBelowMaximumAllowedValue())
             {
@@ -90,37 +97,37 @@ namespace GildedRose
             }
         }
 
-        private void SetQualityTo0()
+        protected void SetQualityTo0()
         {
             Quality = 0;
         }
 
-        private void DecreaseRemainingSellDays()
+        protected void DecreaseRemainingSellDays()
         {
             SellIn -= 1;
         }
 
-        private bool IsQualityAboveMinimumValue()
+        protected bool IsQualityAboveMinimumValue()
         {
             return Quality > 0;
         }
 
-        private void DecreaseQuality()
+        protected void DecreaseQuality()
         {
             Quality -= 1;
         }
 
-        private void IncreaseQuality()
+        protected void IncreaseQuality()
         {
             Quality += 1;
         }
 
-        private bool IsQualityBelowMaximumAllowedValue()
+        protected bool IsQualityBelowMaximumAllowedValue()
         {
             return Quality < 50;
         }
 
-        private bool IsItemExpired()
+        protected bool IsItemExpired()
         {
             return SellIn < 0;
         }

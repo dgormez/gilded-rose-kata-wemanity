@@ -70,11 +70,14 @@
   <ItemGroup>
     <Compile Include="ApprovalTest.cs" />
     <Compile Include="GildedRose.cs" />
-    <Compile Include="GildedRoseTest.cs" />
     <Compile Include="Interfaces\IAgeable.cs" />
+    <Compile Include="ItemsFactory\AgedBrie.cs" />
+    <Compile Include="ItemsFactory\BackStagePass.cs" />
     <Compile Include="ItemsFactory\Item.cs" />
+    <Compile Include="ItemsFactory\ItemFactory.cs" />
     <Compile Include="ItemsFactory\ItemWrapper.cs" />
     <Compile Include="ItemsFactory\ItemWrapperTests.cs" />
+    <Compile Include="ItemsFactory\Sulfuras.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -10,31 +10,16 @@ namespace GildedRose
             Console.WriteLine("OMGHAI!");
 
             IList<ItemWrapper> Items = new List<ItemWrapper>{
-                new ItemWrapper {Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20},
-                new ItemWrapper {Name = "Aged Brie", SellIn = 2, Quality = 0},
-                new ItemWrapper {Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7},
-                new ItemWrapper {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80},
-                new ItemWrapper {Name = "Sulfuras, Hand of Ragnaros", SellIn = -1, Quality = 80},
-                new ItemWrapper
-                {
-                    Name = "Backstage passes to a TAFKAL80ETC concert",
-                    SellIn = 15,
-                    Quality = 20
-                },
-                new ItemWrapper
-                {
-                    Name = "Backstage passes to a TAFKAL80ETC concert",
-                    SellIn = 10,
-                    Quality = 49
-                },
-                new ItemWrapper
-                {
-                    Name = "Backstage passes to a TAFKAL80ETC concert",
-                    SellIn = 5,
-                    Quality = 49
-                },
+                ItemWrapperFactory.GetCorrectItemTypeByName("+5 Dexterity Vest",10,20),
+                ItemWrapperFactory.GetCorrectItemTypeByName("Aged Brie", 2,  0),
+                ItemWrapperFactory.GetCorrectItemTypeByName("Elixir of the Mongoose", 5,  7),
+                ItemWrapperFactory.GetCorrectItemTypeByName("Sulfuras, Hand of Ragnaros", 0,  80),
+                ItemWrapperFactory.GetCorrectItemTypeByName("Sulfuras, Hand of Ragnaros", -1,  80),
+                ItemWrapperFactory.GetCorrectItemTypeByName("Backstage passes to a TAFKAL80ETC concert",15,20),
+                ItemWrapperFactory.GetCorrectItemTypeByName("Backstage passes to a TAFKAL80ETC concert",10,49),
+                ItemWrapperFactory.GetCorrectItemTypeByName("Backstage passes to a TAFKAL80ETC concert",5,49),
 				// this conjured item does not work properly yet
-				new ItemWrapper {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
+				ItemWrapperFactory.GetCorrectItemTypeByName("Conjured Mana Cake", 3,  6)
             };
 
             var app = new GildedRose(Items);
