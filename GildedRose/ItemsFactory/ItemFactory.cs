@@ -1,26 +1,29 @@
-﻿using System;
+﻿using GildedRose.ItemsFactory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GildedRose
+namespace GildedRose.ItemsFactory
 {
 
     public static class ItemWrapperFactory
     {
-        public static ItemWrapper GetCorrectItemTypeByName(string name, int quality, int sellIn)
+        public static ItemWrapper GetCorrectItemTypeByName(string name, int sellIn, int quality)
         {
             switch (name)
             {
                 case "Sulfuras, Hand of Ragnaros":
-                    return new Sulfuras(name, quality, sellIn);
+                    return new Sulfuras(name, sellIn, quality);
                 case "Aged Brie":
-                    return new AgedBrie(name, quality, sellIn);
+                    return new AgedBrie(name, sellIn, quality);
                 case "Backstage passes to a TAFKAL80ETC concert":
-                    return new BackStagePass(name, quality, sellIn);
+                    return new BackStagePass(name, sellIn, quality);
+                case "Conjured Mana Cake":
+                    return new Conjured(name, sellIn, quality);
                 default:
-                    return new ItemWrapper(name, quality, sellIn);
+                    return new ItemWrapper(name, sellIn, quality);
             }
         }
     }

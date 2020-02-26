@@ -73,6 +73,7 @@
     <Compile Include="Interfaces\IAgeable.cs" />
     <Compile Include="ItemsFactory\AgedBrie.cs" />
     <Compile Include="ItemsFactory\BackStagePass.cs" />
+    <Compile Include="ItemsFactory\Conjured.cs" />
     <Compile Include="ItemsFactory\Item.cs" />
     <Compile Include="ItemsFactory\ItemFactory.cs" />
     <Compile Include="ItemsFactory\ItemWrapper.cs" />

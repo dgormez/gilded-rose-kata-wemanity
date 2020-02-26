@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace GildedRose
+namespace GildedRose.ItemsFactory
 {
     [TestFixture]
     public class ItemWrapperTests

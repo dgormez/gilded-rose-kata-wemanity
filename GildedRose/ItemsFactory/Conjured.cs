@@ -1,22 +1,17 @@
 ﻿using System;
-
 using System.Collections.Generic;
-
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GildedRose.ItemsFactory
 {
-    public class Sulfuras : ItemWrapper
+    public class Conjured : ItemWrapper
     {
-
-        public Sulfuras(string name, int sellIn, int quality) : base(name, sellIn, quality)
+        public Conjured(string name, int sellIn, int quality) : base(name, sellIn, quality)
         { }
 
         public override void Age()
-        {
-            //Do nothing - sulfuras do not age
-        }
+        { }
     }
 }

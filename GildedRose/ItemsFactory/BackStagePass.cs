@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GildedRose
+namespace GildedRose.ItemsFactory
 {
     public class BackStagePass : ItemWrapper
     {

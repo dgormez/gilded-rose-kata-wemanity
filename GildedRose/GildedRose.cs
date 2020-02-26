@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using GildedRose.ItemsFactory;
+using System.Collections.Generic;
 
 
 

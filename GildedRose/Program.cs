@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GildedRose.ItemsFactory;
+using System;
 using System.Collections.Generic;
 
 namespace GildedRose

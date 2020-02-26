@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GildedRose
+namespace GildedRose.ItemsFactory
 {
 
     public class ItemWrapper : Item, IAgeable
@@ -25,59 +25,16 @@ namespace GildedRose
 
         public virtual void Age()
         {
-            if (Name == BackStagePass)
-            {
-                //BackStage passes Increase in quality when approching sell day
-                IncreaseQualityIfBelowMaximum();
-
-                if (IsQualityBelowMaximumAllowedValue())
-                {
-                    if (SellIn < 11)
-                    {
-                        IncreaseQuality();
-                    }
-
-                    if (SellIn < 6)
-                    {
-                        IncreaseQuality();
-                    }
-                }
-
-                DecreaseRemainingSellDays();
-
-                if (IsItemExpired())
-                {
-                    SetQualityTo0();
-                }
-            }
-                       
-            if (Name == AgedBrie)
-            {
-                DecreaseRemainingSellDays();
-
-                //Aged Brie increase in quality instead of decreasing
-                IncreaseQualityIfBelowMaximum();
-
-                //Double quality increase rate for AgedBrie when expired
-                if (IsItemExpired())
-                {
-                    IncreaseQualityIfBelowMaximum();
-                }
-            }
-                       
             //Default Case
-            if (Name != AgedBrie && Name != BackStagePass && Name != Sulfuras)
+            DecreaseRemainingSellDays();
+
+            //Decrease quality of item
+            DecreaseQualityIfAboveMinimum();
+
+            //Doubble decrease Rate when expired
+            if (IsItemExpired())
             {
-                DecreaseRemainingSellDays();
-
-                //Decrease quality of item
                 DecreaseQualityIfAboveMinimum();
-
-                //Doubble decrease Rate when expired
-                if (IsItemExpired())
-                {
-                    DecreaseQualityIfAboveMinimum();
-                }
             }
         }
 
