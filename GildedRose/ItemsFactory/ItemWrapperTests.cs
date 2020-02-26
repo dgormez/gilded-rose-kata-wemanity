@@ -1,8 +1,9 @@
 ﻿using FluentAssertions;
+using GildedRose.ItemsFactory;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace GildedRose.ItemsFactory
+namespace GildedRose
 {
     [TestFixture]
     public class ItemWrapperTests
