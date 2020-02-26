@@ -16,6 +16,8 @@ namespace GildedRose.ItemsFactory
 
         private const string Sulfuras = "Sulfuras, Hand of Ragnaros";
 
+        protected int qualityDegradingRate = 1;
+
         public ItemWrapper (string name, int sellIn, int quality)
         {
             Name = name;
@@ -40,9 +42,9 @@ namespace GildedRose.ItemsFactory
 
         protected void DecreaseQualityIfAboveMinimum()
         {
-            if (IsQualityAboveMinimumValue())
+            if (IsQualityAboveMinimumAllowedValue())
             {
-                DecreaseQuality();
+                DecreaseQualityByStep();
             }
         }
 
@@ -50,7 +52,7 @@ namespace GildedRose.ItemsFactory
         {
             if (IsQualityBelowMaximumAllowedValue())
             {
-                IncreaseQuality();
+                IncreaseQualityByStep();
             }
         }
 
@@ -64,17 +66,20 @@ namespace GildedRose.ItemsFactory
             SellIn -= 1;
         }
 
-        protected bool IsQualityAboveMinimumValue()
+        protected bool IsQualityAboveMinimumAllowedValue()
         {
             return Quality > 0;
         }
 
-        protected void DecreaseQuality()
+        protected void DecreaseQualityByStep()
         {
-            Quality -= 1;
+            if (Quality >= qualityDegradingRate)
+                Quality -= qualityDegradingRate;
+            else
+                Quality = 0;
         }
 
-        protected void IncreaseQuality()
+        protected void IncreaseQualityByStep()
         {
             Quality += 1;
         }

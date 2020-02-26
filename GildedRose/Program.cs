@@ -20,7 +20,7 @@ namespace GildedRose
                 ItemWrapperFactory.GetCorrectItemTypeByName("Backstage passes to a TAFKAL80ETC concert",10,49),
                 ItemWrapperFactory.GetCorrectItemTypeByName("Backstage passes to a TAFKAL80ETC concert",5,49),
 				// this conjured item does not work properly yet
-				ItemWrapperFactory.GetCorrectItemTypeByName("Conjured Mana Cake", 3,  6)
+				ItemWrapperFactory.GetCorrectItemTypeByName("Conjured Mana Cake", 3,  25)
             };
 
             var app = new GildedRose(Items);

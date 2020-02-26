@@ -24,12 +24,12 @@ namespace GildedRose.ItemsFactory
             {
                 if (SellIn < 11)
                 {
-                    IncreaseQuality();
+                    IncreaseQualityByStep();
                 }
 
                 if (SellIn < 6)
                 {
-                    IncreaseQuality();
+                    IncreaseQualityByStep();
                 }
             }
 

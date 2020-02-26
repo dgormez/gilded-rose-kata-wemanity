@@ -8,10 +8,10 @@ namespace GildedRose.ItemsFactory
 {
     public class Conjured : ItemWrapper
     {
+        
         public Conjured(string name, int sellIn, int quality) : base(name, sellIn, quality)
-        { }
-
-        public override void Age()
-        { }
+        {
+            qualityDegradingRate = 2;
+        }
     }
 }

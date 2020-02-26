@@ -11,6 +11,7 @@ namespace GildedRose.ItemsFactory
         private const string BackStagePass = "Backstage passes to a TAFKAL80ETC concert";
         private const string Sulfuras = "Sulfuras, Hand of Ragnaros";
         private const string DefaultName = "Default Item";
+        private const string Conjured = "Conjured";
 
         /// <summary>
         /// [REQ 1] For default item : At the end of each day our system lowers both values for every item
@@ -178,6 +179,20 @@ namespace GildedRose.ItemsFactory
         {
             ItemWrapper item = ItemWrapperFactory.GetCorrectItemTypeByName(BackStagePass, 0, 25);
             ItemWrapper item_aged_expected = ItemWrapperFactory.GetCorrectItemTypeByName(BackStagePass, -1, 0);
+
+            item.Age();
+
+            item.Should().BeEquivalentTo(item_aged_expected);
+        }
+
+        /// <summary>
+        /// [REQ 10] Quality increases by 3 when there are 5 days or less
+        /// </summary>
+        [Test]
+        public void AgeItemTest_Conjured_QualityDecreasesTwiceAsFast()
+        {
+            ItemWrapper item = ItemWrapperFactory.GetCorrectItemTypeByName(Conjured, -1, 25);
+            ItemWrapper item_aged_expected = ItemWrapperFactory.GetCorrectItemTypeByName(Conjured, -2, 21);
 
             item.Age();
 
